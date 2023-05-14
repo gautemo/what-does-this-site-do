@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const site = ref('')
 const checkSite = ref('')
-const { data, pending, error } = await useFetch(() => `/api/about?site=${checkSite.value}`, { immediate: false })
+const { data, pending, error } = await useFetch(() => `/api/about?site=${checkSite.value}`, { immediate: false, retry: false })
 </script>
 
 <template>
