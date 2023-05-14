@@ -17,9 +17,7 @@ export default defineEventHandler(async (event) => {
     })
     return response.data.choices[0].text
   } catch (error) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: JSON.stringify(error),
-    })
+    console.log(error)
+    return JSON.stringify(error)
   }
 })
