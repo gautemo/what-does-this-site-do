@@ -33,7 +33,7 @@ export default defineNuxtConfig({
           content: '@GauteMeekOlsen'
         },
         {
-          property: 'og:site_name',
+          property: 'og:title',
           content: 'What does this site do?'
         },
         {
