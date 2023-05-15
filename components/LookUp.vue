@@ -1,11 +1,19 @@
 <script setup lang="ts">
 const site = ref('')
 const checkSite = ref('')
-const { data, pending, error } = await useFetch(() => `/api/about?site=${checkSite.value}`, { immediate: false, retry: false })
+const { data, pending, error, execute } = await useFetch(() => `/api/about?site=${checkSite.value}`, { immediate: false, retry: false })
+
+function check() {
+  if(checkSite.value === site.value) {
+    execute()
+  } else {
+    checkSite.value = site.value
+  }
+}
 </script>
 
 <template>
-  <form @submit.prevent="checkSite = site">
+  <form @submit.prevent="check">
     <input type="url" v-model="site" placeholder="e.g. https://gaute.dev">
     <button :disabled="pending && !site">
       <svg v-if="pending && checkSite" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><circle cx="4" cy="12" r="3" fill="currentColor"><animate id="svgSpinners3DotsFade0" fill="freeze" attributeName="opacity" begin="0;svgSpinners3DotsFade1.end-0.25s" dur="0.75s" values="1;.2"/></circle><circle cx="12" cy="12" r="3" fill="currentColor" opacity=".4"><animate fill="freeze" attributeName="opacity" begin="svgSpinners3DotsFade0.begin+0.15s" dur="0.75s" values="1;.2"/></circle><circle cx="20" cy="12" r="3" fill="currentColor" opacity=".3"><animate id="svgSpinners3DotsFade1" fill="freeze" attributeName="opacity" begin="svgSpinners3DotsFade0.begin+0.3s" dur="0.75s" values="1;.2"/></circle></svg>
@@ -14,7 +22,7 @@ const { data, pending, error } = await useFetch(() => `/api/about?site=${checkSi
   </form>
   <p class="info">beware - this can result in a boost of confidence</p>
   <p class="result" v-if="data">{{ data }}</p>
-  <p class="error" v-if="error">Something went wrong, maybe I'm out of usage limit and need more money</p>
+  <p class="error" v-if="error">Something went wrong, maybe you hit the 10 second Vercel cap or maybe I'm out of money. Please try again?</p>
 </template>
 
 <style scoped>
