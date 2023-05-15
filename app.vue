@@ -74,6 +74,7 @@ footer {
 
 footer p {
   margin: 0;
+  text-align: center;
 }
 
 footer a {
@@ -84,7 +85,7 @@ footer a {
   h2 {
     color: rgba(255, 255, 255, 0.8);
   }
-  
+
   footer a {
     color: #85c2ff
   }
