@@ -13,6 +13,7 @@
     "nuxt": "^3.4.3"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.0.1",
     "openai": "^3.2.1"
   }
 }
